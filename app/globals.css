@@ -1,0 +1,153 @@
+@import url('https://api.fontshare.com/v2/css?f[]=bdo-grotesk@400,500,600,700&f[]=instrument-serif@400,400i&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --card: 0 0% 99%;
+    --card-foreground: 0 0% 0%;
+    --popover: 0 0% 99%;
+    --popover-foreground: 0 0% 0%;
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 95%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 35%;
+    --accent: 54 98% 78%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 62% 40%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 0% / 0.08;
+    --input: 0 0% 0% / 0.1;
+    --ring: 54 98% 78%;
+    --radius: 1.5rem;
+  }
+  * { border-color: rgba(0,0,0,0.08); }
+  html, body { background: #FFFFFF; color: #000; }
+  body {
+    font-family: 'BDO Grotesk', 'Bdo Grotesk', var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-feature-settings: 'ss01';
+    letter-spacing: -0.011em;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    html, body, * { cursor: none !important; }
+  }
+}
+
+@layer utilities {
+  .font-serif-display { font-family: 'Instrument Serif', ui-serif, Georgia, serif; font-feature-settings: 'ss01'; letter-spacing: -0.02em; }
+  .text-gradient-wove {
+    background: linear-gradient(180deg, #000 0%, #000 40%, rgba(0,0,0,0.55) 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .text-gradient-lime {
+    background: linear-gradient(135deg, #000 0%, #000 55%, #007DCC 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  /* Dark-mode variant for headings on dark/blue sections */
+  .text-gradient-wove-inv {
+    background: linear-gradient(180deg, #fff 0%, #fff 40%, rgba(255,255,255,0.6) 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+
+  /* Section background utilities */
+  .bg-white-canvas { background: #FFFFFF; }
+  .bg-cream { background: #F5EFE1; }
+  .bg-butter { background: #FEF48D; }
+  .bg-ocean { background: #007DCC; }
+  .bg-ink { background: #0A0A0A; }
+  .bg-frost { background: #F2F5F8; }
+
+  .noise::before {
+    content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.035; mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+  .glass-light {
+    background: linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0.45));
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 30px 60px -30px rgba(0,0,0,0.12), 0 8px 20px -12px rgba(0,0,0,0.06);
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+  }
+  .glass-dark {
+    background: #000;
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 30px 80px -20px rgba(0,0,0,0.3);
+  }
+  .glass-frost {
+    background: rgba(248,248,248,0.75);
+    border: 1px solid rgba(0,0,0,0.05);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+  }
+  .glow-yellow { box-shadow: 0 0 0 1px rgba(254,244,141,0.6), 0 20px 60px -10px rgba(254,244,141,0.7); }
+  .glow-blue { box-shadow: 0 0 0 1px rgba(0,125,204,0.4), 0 20px 60px -10px rgba(0,125,204,0.4); }
+
+  @keyframes float-slow { 0%,100% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(2%, -3%, 0) scale(1.05); } }
+  @keyframes drift { 0%,100% { transform: translate3d(-6%, 0, 0) scale(1); } 50% { transform: translate3d(6%, -4%, 0) scale(1.08); } }
+  @keyframes pulse-soft { 0%,100% { opacity: 0.55; } 50% { opacity: 0.9; } }
+  @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  .anim-float-slow { animation: float-slow 14s ease-in-out infinite; }
+  .anim-drift { animation: drift 22s ease-in-out infinite; }
+  .anim-pulse-soft { animation: pulse-soft 6s ease-in-out infinite; }
+  .anim-marquee { animation: marquee 40s linear infinite; }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  .hair-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(0,0,0,0.12), transparent); }
+
+  /* Perf: let the browser skip layout/paint on off-screen sections. */
+  .cv-auto { content-visibility: auto; contain-intrinsic-size: 800px 1200px; }
+  .cv-auto-tall { content-visibility: auto; contain-intrinsic-size: 900px 1400px; }
+  .cv-auto-short { content-visibility: auto; contain-intrinsic-size: 900px 700px; }
+
+  /* Dark-theme (ocean / ink) overrides so section content reads correctly on coloured bg */
+  [data-theme="dark"] .text-gradient-wove {
+    background: linear-gradient(180deg, #fff 0%, #fff 40%, rgba(255,255,255,0.6) 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  [data-theme="dark"] .text-gradient-lime {
+    background: linear-gradient(135deg, #fff 0%, #fff 55%, #FEF48D 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  [data-theme="dark"] .text-black { color: #fff; }
+  [data-theme="dark"] .text-black\/85, [data-theme="dark"] .text-black\/80, [data-theme="dark"] .text-black\/70, [data-theme="dark"] .text-black\/65 { color: rgba(255,255,255,0.8); }
+  [data-theme="dark"] .text-black\/60, [data-theme="dark"] .text-black\/55, [data-theme="dark"] .text-black\/50, [data-theme="dark"] .text-black\/45, [data-theme="dark"] .text-black\/40 { color: rgba(255,255,255,0.6); }
+  [data-theme="dark"] .text-black\/25, [data-theme="dark"] .text-black\/20, [data-theme="dark"] .text-black\/15 { color: rgba(255,255,255,0.35); }
+  [data-theme="dark"] .glass-light {
+    background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04));
+    border: 1px solid rgba(255,255,255,0.14);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 30px 60px -30px rgba(0,0,0,0.4);
+  }
+  [data-theme="dark"] .glass-light .text-black\/80 { color: rgba(255,255,255,0.85); }
+  [data-theme="dark"] .border-black\/5, [data-theme="dark"] .border-black\/10 { border-color: rgba(255,255,255,0.1); }
+  [data-theme="dark"] .bg-white\/60, [data-theme="dark"] .bg-white\/50, [data-theme="dark"] .bg-white\/70 {
+    background: rgba(255,255,255,0.08);
+  }
+  [data-theme="dark"] .hair-divider { background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent); }
+
+  /* Parallax stack: each direct child section becomes sticky, stacking as you scroll. */
+  .parallax-stack { position: relative; }
+  .parallax-stack > .parallax-panel {
+    position: sticky;
+    top: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    /* Rounded top corners give a card-reveal feel like CloudStudio */
+    border-top-left-radius: 32px;
+    border-top-right-radius: 32px;
+  }
+  .parallax-stack > .parallax-panel:first-child {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+}
