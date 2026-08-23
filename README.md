@@ -183,7 +183,7 @@ The goal was to maintain the same visual hierarchy and usability across:
 ### Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
+https://github.com/parthtikariya-debug/Touch-CRM-frontend.git
 ```
 
 ### Navigate into the project
